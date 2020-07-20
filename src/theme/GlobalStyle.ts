@@ -11,4 +11,9 @@ export const GlobalStyle = createGlobalStyle`
         -moz-osx-font-smoothing: grayscale;
         background-color: #f8f8f8;
     }
+    #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 `;

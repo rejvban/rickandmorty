@@ -4,6 +4,9 @@ import styled from 'styled-components';
 // Assets
 import logo from '../../assets/logo.svg';
 
+// Components
+import { Search } from '../Search';
+
 type Props = {
   children: ReactNode;
 };
@@ -15,6 +18,7 @@ export const Layout: React.FC<Props> = ({ children }: Props) => {
         <StyledImage src={logo} alt="logo" />
         <StyledText>wubba lubba dub dub</StyledText>
       </StyledNav>
+      <Search />
       {children}
     </>
   );

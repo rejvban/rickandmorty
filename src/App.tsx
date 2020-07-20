@@ -1,28 +1,28 @@
 import React from 'react';
-import { useQuery, gql } from '@apollo/client';
-import { Layout } from './components/Layout';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+// import { useQuery, gql } from '@apollo/client';
+// import { Layout } from './components/Layout';
+import { Home } from './pages/Home';
 
-const QUERY = gql`
-  query {
-    characters(page: 2, filter: { name: "Rick" }) {
-      results {
-        name
-      }
-    }
-  }
-`;
+// const QUERY = gql`
+//   query {
+//     characters(page: 2, filter: { name: "Rick" }) {
+//       results {
+//         name
+//       }
+//     }
+//   }
+// `;
 
 const App: React.FC = () => {
-  const { loading, error, data } = useQuery(QUERY);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error!</p>;
+  // const { loading, error, data } = useQuery(QUERY);
 
   return (
-    <Layout>
-      <h1>Shit</h1>
-      {console.log(data)}
-    </Layout>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
+    </Router>
   );
 };
 
