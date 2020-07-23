@@ -1,29 +1,44 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction, useCallback } from 'react';
 import styled from 'styled-components';
 
 import Banner from '../../assets/banner.png';
+import debounce from 'lodash/debounce';
 
-export const Search: React.FC = () => {
+type Props = {
+  setKeyword: Dispatch<SetStateAction<string>>;
+};
+
+export const Search: React.FC<Props> = ({ setKeyword }: Props) => {
+  const delayedSetter = useCallback(
+    debounce(
+      (func: Dispatch<SetStateAction<string>>, value: string) =>
+        func(() => value),
+      500,
+    ),
+    [],
+  );
+
+  const handleKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.persist();
+    delayedSetter(setKeyword, e.target.value);
+  };
+
   return (
     <SearchWrapper>
       <StyledBanner src={Banner} alt="rick-morty-banner" />
-      <SearchBox />
+      <SearchBoxWrapper>
+        <SearchBar onChange={handleKeyword} placeholder="my name..." />
+      </SearchBoxWrapper>
     </SearchWrapper>
-  );
-};
-
-const SearchBox: React.FC = () => {
-  return (
-    <SearchBoxWrapper>
-      <SearchBar />
-      <p>Text</p>
-    </SearchBoxWrapper>
   );
 };
 
 const SearchBoxWrapper = styled.div`
   position: absolute;
-  margin: -12px;
+  margin: -7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const SearchBar = styled.input`
