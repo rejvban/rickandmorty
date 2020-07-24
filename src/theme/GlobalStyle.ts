@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         background-color: #f8f8f8;
+        overflow-y: scroll;
     }
     #root {
         min-height: 100vh;

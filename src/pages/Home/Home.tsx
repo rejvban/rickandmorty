@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 
 // Components
@@ -17,6 +17,12 @@ export interface Character {
   name: string;
   status: string;
   species: string;
+  location: {
+    name: string;
+  };
+  origin: {
+    name: string;
+  };
   image: string;
   __typename: string;
 }
@@ -48,6 +54,12 @@ const GET_CHARACTERS = gql`
         name
         status
         species
+        location {
+          name
+        }
+        origin {
+          name
+        }
         image
       }
     }
@@ -63,17 +75,12 @@ export const Home: React.FC = () => {
     },
   );
 
-  useEffect(() => {
-    console.log('Data', data);
-    console.log('Error', error?.name, error?.extraInfo);
-    console.log('Kw', keyword);
-  }, [keyword, data, error]);
-
   return (
     <Layout>
       <Search setKeyword={setKeyword} />
       <StyledContainer>
         {loading && <p>Loading...</p>}
+        {!loading && !data && error && <p>No results found...</p>}
         {!loading &&
           data?.characters.results?.map((character: Character) => (
             <CharacterCard key={character.id} character={character} />
