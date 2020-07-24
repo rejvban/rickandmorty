@@ -12,7 +12,7 @@ export const CharacterCard: React.FC<Props> = ({ character }: Props) => {
   return (
     <StyledContainer>
       <div>
-        <img src={character.image} alt="char-image" />
+        <img src={character.image} alt="character" />
       </div>
       <StyledInfoContainer>
         <h2>{character.name}</h2>
