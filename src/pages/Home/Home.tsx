@@ -6,7 +6,7 @@ import { useQuery, gql } from '@apollo/client';
 import { Layout } from '../../components/Layout';
 import { Search } from '../../components/Search';
 import { CharacterCard } from '../../components/CharacterCard';
-import { _Title } from '../../components/_Title';
+import { Title } from '../../components/_Title';
 
 interface CharacterVars {
   page: number;
@@ -79,7 +79,7 @@ export const Home: React.FC = () => {
 
   return (
     <>
-      <_Title title="Rick and Morty | Characters" />
+      <Title title="Rick and Morty | Characters" />
       <Layout>
         <Search setKeyword={setKeyword} />
         <StyledContainer>

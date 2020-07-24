@@ -5,9 +5,7 @@ type Props = {
   title?: string;
 };
 
-export const _Title: React.FC<Props> = ({
-  title = 'Rick and Morty',
-}: Props) => (
+export const Title: React.FC<Props> = ({ title = 'Rick and Morty' }: Props) => (
   <Helmet>
     <title>{title}</title>
   </Helmet>
